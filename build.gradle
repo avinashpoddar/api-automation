@@ -12,11 +12,19 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
-
+    compile group: 'junit', name:'junit', version: '4.12'
+    compile group: 'org.testng', name: 'testng', version: '6.14.3'
     compile group: 'io.rest-assured', name: 'rest-assured', version: '4.0.0'
-    // https://mvnrepository.com/artifact/org.json/json
     compile group: 'org.json', name: 'json', version: '20190722'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-afterburner', version: '2.9.8'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version : '1.18.10'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version : '1.18.10'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version : '1.18.10'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version : '1.18.10'
+}
+
+test {
+    useTestNG()
 }
