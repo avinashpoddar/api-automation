@@ -1,10 +1,10 @@
 package regres.in;
 
+import entities.reqres.in.UserResponse;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import reqres.in.UserResponse;
 
 import static io.restassured.RestAssured.given;
 

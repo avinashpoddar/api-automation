@@ -1,5 +1,5 @@
-package reqres.in;
-import base.BaseResponse;
+package entities.reqres.in;
+import entities.base.BaseResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(

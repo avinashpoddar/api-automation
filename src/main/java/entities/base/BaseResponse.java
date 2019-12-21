@@ -1,4 +1,4 @@
-package base;
+package entities.base;
 
 import org.testng.Assert;
 
