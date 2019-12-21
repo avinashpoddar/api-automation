@@ -13,7 +13,7 @@ public class UserResponse extends BaseResponse {
 
     @Getter
     @Setter
-    @JsonIgnoreProperties(ignore Unknown = true)
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Data {
         private float id;
         private String email;
