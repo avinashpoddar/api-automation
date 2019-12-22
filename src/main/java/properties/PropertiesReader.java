@@ -28,4 +28,7 @@ public class PropertiesReader {
     }
 
 
+    public String getGorestCoInHost() {
+        return  properties.getProperty("gorest_co_in");
+    }
 }

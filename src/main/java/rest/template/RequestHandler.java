@@ -7,9 +7,6 @@ import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Reporter;
-
-import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
 public class RequestHandler {
@@ -30,7 +27,7 @@ public class RequestHandler {
 
         Response response = getAPIResponseBasedOnHttpMethod(url, httpMethod, requestSpecification);
 
-        logResponseDetails(iServiceEndPoint);
+        logResponseDetails(endPointName, response);
 
         return response;
     }
@@ -96,7 +93,7 @@ public class RequestHandler {
         //log curl
     }
 
-    private  void logResponseDetails(IServiceEndPoint iServiceEndPoint){
-
+    private  void logResponseDetails(String endPointName, Response response){
+        Reporter.log(String.format(endPointName+" Response --- %s",response.asString()),true);
     }
 }

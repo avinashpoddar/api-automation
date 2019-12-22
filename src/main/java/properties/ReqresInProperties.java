@@ -5,4 +5,5 @@ public class ReqresInProperties {
     private static final String regresInHost = propertiesReader.getReqresInHost();
 
     public static final String getSingleUserDetails = String.format("%s/api/users", regresInHost);
+    public static final String createUser = String.format("%s/api/users", regresInHost);
 }

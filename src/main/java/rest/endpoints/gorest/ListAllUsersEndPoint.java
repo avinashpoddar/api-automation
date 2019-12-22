@@ -1,7 +1,6 @@
-package rest.endpoints.reqres;
+package rest.endpoints.gorest;
 
-import io.restassured.http.ContentType;
-import properties.ReqresInProperties;
+import properties.GorestProperties;
 import rest.template.HttpMethod;
 import rest.template.IServiceEndPoint;
 import rest.template.Param;
@@ -10,16 +9,19 @@ import rest.template.RequestBody;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetUserEndPoint implements IServiceEndPoint {
-private  String userId;
+public class ListAllUsersEndPoint implements IServiceEndPoint {
 
-    public GetUserEndPoint(String userId) {
-        this.userId = userId;
+    private String accessToken;
+    private String format;
+
+    public ListAllUsersEndPoint(String accessToken) {
+        this.accessToken = accessToken;
+        this.format = "json";
     }
 
     @Override
     public String url() {
-        return ReqresInProperties.getSingleUserDetails + "/{userId}";
+        return GorestProperties.gorestHost + "/public-api/users";
     }
 
     @Override
@@ -29,20 +31,18 @@ private  String userId;
 
     @Override
     public List<Param> queryParameters() {
-        return null;
+        return  null;
     }
 
     @Override
     public List<Param> pathParameters() {
-        ArrayList<Param> pathParams = new ArrayList<>();
-        pathParams.add(new Param("userId", userId ));
-        return pathParams;
+        return null;
     }
 
     @Override
     public List<Param> headers() {
         ArrayList<Param> headers = new ArrayList<>();
-        headers.add(new Param("Content-Type", ContentType.JSON.toString()));
+        headers.add(new Param("Authorization",String.format("Bearer %s", accessToken)));
         return headers;
     }
 

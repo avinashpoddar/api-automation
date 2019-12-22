@@ -1,4 +1,4 @@
-package rest.endpoints.reqres;
+package rest.endpoints.reqres.GetUser;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import rest.template.BaseResponse;

@@ -1,14 +1,16 @@
 package tests.reqresin;
 
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import rest.endpoints.reqres.GetUserEndPoint;
-import rest.endpoints.reqres.GetUserResponse;
+import rest.endpoints.reqres.CreateUser.CreateUserBody;
+import rest.endpoints.reqres.CreateUser.CreateUserBodyBuilder;
+import rest.endpoints.reqres.CreateUser.CreateUserEndPoint;
+import rest.endpoints.reqres.CreateUser.CreateUserResponse;
+import rest.endpoints.reqres.GetUser.GetUserEndPoint;
+import rest.endpoints.reqres.GetUser.GetUserResponse;
 import rest.template.RequestHandler;
 
-import static io.restassured.RestAssured.given;
 
 public class UsersTests {
 
@@ -25,5 +27,26 @@ public class UsersTests {
         Assert.assertEquals(userResponse.getData().getEmail(), "janet.weaver@reqres.in", "EmailId does not match");
         Assert.assertEquals(userResponse.getData().getFirst_name(), "Janet", "FirstName does not match");
         Assert.assertEquals(userResponse.getData().getLast_name(), "Weaver", "LastName does not match");
+    }
+
+    @Test
+    public void shouldCreateANewUser() {
+
+        String name = "Avinash11";
+        String job = "SDET11";
+
+        CreateUserBody createUserBody = new CreateUserBodyBuilder()
+                .withName(name)
+                .withJob(job)
+                .build();
+
+        CreateUserEndPoint endPoint = new CreateUserEndPoint(createUserBody);
+
+        Response response = new RequestHandler().processRequest(endPoint);
+
+        CreateUserResponse createUserResponse = response.as(CreateUserResponse.class);
+        createUserResponse.setHttpStatusCode(response.statusCode());
+
+        Assert.assertEquals(createUserResponse.httpStatusCode,201);
     }
 }
