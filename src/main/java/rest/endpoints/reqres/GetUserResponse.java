@@ -1,14 +1,14 @@
-package entities.reqres.in;
+package rest.endpoints.reqres;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import entities.base.BaseResponse;
+import rest.template.BaseResponse;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserResponse extends BaseResponse {
+public class GetUserResponse extends BaseResponse {
     private Data data;
 
     @Getter
@@ -22,4 +22,3 @@ public class UserResponse extends BaseResponse {
         private String avatar;
     }
 }
-

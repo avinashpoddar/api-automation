@@ -1,10 +1,12 @@
-package regres.in;
+package tests.reqresin;
 
-import entities.reqres.in.UserResponse;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import rest.endpoints.reqres.GetUserEndPoint;
+import rest.endpoints.reqres.GetUserResponse;
+import rest.template.RequestHandler;
 
 import static io.restassured.RestAssured.given;
 
@@ -12,17 +14,11 @@ public class UsersTests {
 
     @Test
     public void shouldGetUserWithId() {
+        GetUserEndPoint userEndPoint = new GetUserEndPoint("2");
 
-        String host = "https://reqres.in";
-        String uri = "/api/users/2";
+        Response response = new RequestHandler().processRequest(userEndPoint);
 
-        Response response = given()
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .when()
-                .get(host + uri);
-
-        UserResponse userResponse = response.as(UserResponse.class);
+        GetUserResponse userResponse = response.as(GetUserResponse.class);
         userResponse.setHttpStatusCode(response.getStatusCode());
 
         Assert.assertEquals(userResponse.getHttpStatusCode(), 200, "Status code does not match");
